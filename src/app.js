@@ -10,8 +10,13 @@ var cors = require("cors");
 var indexRouter = require("./routes/index");
 var app = express();
 const webSocket = require("./socket");
+console.log("env", process.env.NODE_ENV);
 const corsOptions = {
-  origin: "https://minichat.netlify.com",
+  origin:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://minichat.netlify.com",
+  credentials: true,
 };
 app.use(cors(corsOptions));
 app.use(logger("dev"));

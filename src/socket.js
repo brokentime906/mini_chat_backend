@@ -12,11 +12,6 @@ module.exports = (server, app) => {
     console.log("connected");
     console.log("conn info ", socket.request.connection._peername);
     socket.remoteAddress = socket.request.connection._peername.address;
-    socket.on("init", (data) => {
-      const { name } = data;
-      socket.emit("welcome", { greet: "Hello Fucking" });
-    });
-
     socket.on("newChat", (data) => {
       socket.emit("newChat", {
         id: 1,
